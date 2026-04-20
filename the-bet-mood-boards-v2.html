@@ -1,0 +1,891 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The Bet — Mood Boards v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0f0d0a;
+    --paper:#f4ede0;
+    --paper-2:#ebe2d0;
+    --muted:#6d6351;
+    --rule:rgba(15,13,10,.14);
+    --rule-dark:rgba(244,237,224,.18);
+
+    /* EDGE — the body's knowing. warm, amber, alive. */
+    --edge-bg:#100b08;
+    --edge-ink:#f1e7d4;
+    --edge-bone:#e0cfa9;
+    --edge-ember:#c2571d;
+    --edge-blood:#7a1a1a;
+    --edge-copper:#8f4418;
+    --edge-smoke:#6b5c4a;
+
+    /* HAND — the question. ritual, intimate, warm. */
+    --hand-bg:#120e09;
+    --hand-ink:#f6ecd6;
+    --hand-brass:#c29647;
+    --hand-parchment:#f1e1bf;
+    --hand-oxblood:#5a1a1a;
+    --hand-cognac:#8a4823;
+    --hand-shadow:#1f1712;
+
+    /* CROSSROADS — the middle. daylit, generous, lived-in. */
+    --cross-bg:#f1e7d2;
+    --cross-ink:#1a1510;
+    --cross-terra:#b0532a;
+    --cross-ochre:#d09235;
+    --cross-sage:#6b7e5e;
+    --cross-dusk:#3d4b60;
+    --cross-earth:#7a5a3c;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  img{display:block;max-width:100%;height:auto}
+  .wrap{max-width:1340px;margin:0 auto;padding:0 44px}
+  @media (max-width:720px){ .wrap{padding:0 22px} }
+
+  /* ——— Cover ——— */
+  .cover{
+    min-height:100vh;
+    display:flex;flex-direction:column;justify-content:space-between;
+    padding:48px 0 64px;
+    background:
+      radial-gradient(900px 500px at 85% 15%, rgba(194,87,29,.28), transparent 60%),
+      radial-gradient(1100px 600px at 15% 95%, rgba(122,26,26,.35), transparent 60%),
+      linear-gradient(180deg,#0f0a06 0%,#161008 100%);
+    color:#f1e7d4;
+    position:relative;overflow:hidden;
+  }
+  .cover::before{
+    content:"";position:absolute;inset:0;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 0.9 0 0 0 0 0.7 0 0 0 0.08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    opacity:.45;mix-blend-mode:screen;pointer-events:none;
+  }
+  .cover .top{display:flex;justify-content:space-between;align-items:center;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.75;position:relative;z-index:1}
+  .cover-main{position:relative;z-index:1;margin:auto 0;display:grid;grid-template-columns:1.4fr 1fr;gap:60px;align-items:end}
+  @media (max-width:960px){.cover-main{grid-template-columns:1fr;gap:32px}}
+  .cover h1{
+    font-family:'Fraunces',serif;font-weight:300;
+    font-size:clamp(62px,11vw,168px);line-height:.86;letter-spacing:-.025em;
+    margin:0;
+  }
+  .cover h1 em{font-style:italic;font-weight:300;color:#c2571d}
+  .cover .q{
+    font-family:'Instrument Serif',serif;font-style:italic;
+    font-size:clamp(22px,2.4vw,32px);max-width:460px;line-height:1.3;margin:0;color:#e0cfa9;
+  }
+  .cover .q b{font-weight:400;color:#f1e7d4;font-style:normal;font-family:'Fraunces',serif}
+  .cover-portrait{position:absolute;right:-4%;top:10%;width:44%;max-width:560px;opacity:.72;mix-blend-mode:luminosity;z-index:0;pointer-events:none}
+  @media (max-width:960px){.cover-portrait{display:none}}
+  .cover .bottom{display:flex;justify-content:space-between;align-items:end;gap:40px;position:relative;z-index:1}
+  .cover .bottom p{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.75;max-width:260px;line-height:1.7;margin:0}
+  .cover .mark{font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:22px;opacity:.8}
+
+  /* ——— Section common ——— */
+  .section{padding:140px 0;position:relative}
+  .eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin:0 0 14px}
+  h2.display{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(40px,6.5vw,88px);line-height:.95;letter-spacing:-.02em;margin:0;max-width:1000px}
+  h2.display em{font-style:italic;font-weight:300}
+  .lede{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(22px,2.4vw,30px);line-height:1.35;letter-spacing:-.01em;max-width:880px;margin-top:28px}
+  .lede em{font-style:italic}
+
+  /* ——— Brand at a glance ——— */
+  .glance{margin-top:72px;display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--rule);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  @media (max-width:860px){.glance{grid-template-columns:1fr}}
+  .glance > div{background:var(--paper);padding:36px 28px;min-height:220px;display:flex;flex-direction:column;justify-content:space-between}
+  .glance .k{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+  .glance .v{font-family:'Fraunces',serif;font-weight:300;font-size:22px;line-height:1.3;letter-spacing:-.005em;margin:10px 0 0}
+  .glance .v em{font-style:italic}
+  .glance .f{font-family:'Instrument Serif',serif;font-style:italic;font-size:15px;color:var(--muted);margin-top:16px;line-height:1.4}
+
+  /* ——— Is / Is Not ——— */
+  .isnot{margin-top:72px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .isnot .row{display:grid;grid-template-columns:1.5fr 1.5fr 2fr;gap:0;border-bottom:1px solid var(--rule)}
+  .isnot .row:last-child{border-bottom:none}
+  .isnot .row.header{background:var(--paper-2)}
+  .isnot .row > div{padding:18px 24px}
+  .isnot .row > div + div{border-left:1px solid var(--rule)}
+  @media (max-width:720px){.isnot .row{grid-template-columns:1fr}.isnot .row > div + div{border-left:none;border-top:1px solid var(--rule)}}
+  .isnot .is{font-family:'Fraunces',serif;font-weight:500;font-size:20px;letter-spacing:-.005em}
+  .isnot .isnt{font-family:'Fraunces',serif;font-weight:300;font-style:italic;font-size:18px;color:var(--muted);text-decoration:line-through;text-decoration-thickness:1px}
+  .isnot .bene{font-family:'Instrument Serif',serif;font-style:italic;font-size:17px;line-height:1.45;color:#3a3225}
+  .isnot .row.header .is,
+  .isnot .row.header .isnt,
+  .isnot .row.header .bene{font-family:'DM Mono',monospace;font-style:normal;text-decoration:none;font-weight:500;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+
+  /* ——— Competitive wedge ——— */
+  .wedge{margin-top:64px;display:grid;grid-template-columns:1fr 1fr;gap:40px}
+  @media (max-width:860px){.wedge{grid-template-columns:1fr}}
+  .wedge .col{background:var(--paper-2);padding:36px}
+  .wedge .col h3{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin:0 0 16px}
+  .wedge .col p{font-family:'Fraunces',serif;font-weight:400;font-size:20px;line-height:1.4;letter-spacing:-.005em;margin:0 0 12px}
+  .wedge .col p em{font-style:italic;color:#b0532a}
+  .wedge .col .comp{font-family:'Instrument Serif',serif;font-style:italic;font-size:17px;color:var(--muted);line-height:1.5}
+
+  /* ——— Board common ——— */
+  .board{padding:140px 0;position:relative;overflow:hidden}
+  .board .head{display:grid;grid-template-columns:140px 1fr auto;gap:32px;align-items:baseline;border-bottom:1px solid currentColor;padding-bottom:28px;margin-bottom:56px}
+  @media (max-width:860px){.board .head{grid-template-columns:1fr;gap:16px}}
+  .board .num{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.24em}
+  .board .name{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(52px,9.5vw,140px);line-height:.84;letter-spacing:-.025em;margin:0}
+  .board .name em{font-style:italic;font-weight:300}
+  .board .role{font-family:'Instrument Serif',serif;font-style:italic;font-size:18px;opacity:.8;white-space:nowrap}
+  .board .stmt{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(22px,2.3vw,30px);line-height:1.35;max-width:900px;letter-spacing:-.005em}
+  .board .stmt em{font-style:italic}
+
+  .section-title{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;margin:88px 0 20px;opacity:.85}
+
+  /* hero row */
+  .hero-row{display:grid;grid-template-columns:1.35fr 1fr;gap:28px;margin-top:72px;align-items:stretch}
+  @media (max-width:860px){.hero-row{grid-template-columns:1fr}}
+  .hero-img{position:relative;overflow:hidden;aspect-ratio:4/5;background:#0a0806}
+  .hero-img img{width:100%;height:100%;object-fit:cover;object-position:center}
+  .hero-quote{display:flex;flex-direction:column;justify-content:space-between;padding:12px 0}
+  .hero-quote .big{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(34px,4vw,56px);line-height:1.02;letter-spacing:-.02em;margin:0}
+  .hero-quote .big em{font-style:italic;font-weight:300}
+  .hero-quote .attr{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;margin-top:20px;opacity:.75}
+  .hero-quote .keys{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+  .hero-quote .keys span{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;padding:7px 11px;border:1px solid currentColor;border-radius:999px;opacity:.85}
+
+  /* palette */
+  .palette{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+  @media (max-width:720px){.palette{grid-template-columns:repeat(3,1fr)}}
+  .swatch{aspect-ratio:1/1.1;position:relative;display:flex;align-items:flex-end;padding:12px;border:1px solid var(--rule-dark)}
+  .swatch .meta{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;line-height:1.2}
+  .swatch .meta b{display:block;font-weight:500;margin-bottom:2px;text-transform:uppercase;letter-spacing:.16em}
+
+  /* type specimen */
+  .type-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  @media (max-width:720px){.type-grid{grid-template-columns:1fr}}
+  .type-card{border:1px solid currentColor;padding:30px;min-height:260px;display:flex;flex-direction:column;justify-content:space-between}
+  .type-card .label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;opacity:.75}
+  .type-card .spec{font-size:13px;font-family:'DM Mono',monospace;opacity:.7;margin-top:14px;line-height:1.5}
+
+  /* signature question treatment */
+  .sig-q{margin-top:32px;padding:32px;border:1px solid currentColor;border-radius:2px;display:flex;flex-direction:column;gap:12px}
+  .sig-q .tag{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;opacity:.75}
+  .sig-q .q{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(28px,3.6vw,48px);line-height:1.1;letter-spacing:-.02em;margin:0}
+  .sig-q .q em{font-style:italic;font-weight:300}
+
+  /* imagery grid */
+  .img-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:230px;gap:10px}
+  @media (max-width:860px){.img-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:210px}}
+  .tile{position:relative;overflow:hidden;background:#0c0c0c;color:#f4ede0;display:flex;align-items:flex-end;padding:14px}
+  .tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .tile .cap{position:relative;z-index:1;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;background:rgba(0,0,0,.55);padding:5px 9px;border-radius:2px;line-height:1.3}
+  .tile.concept{padding:20px}
+  .tile.concept .cap{background:none;padding:0;opacity:.85}
+  .tile.tall{grid-row:span 2}
+  .tile.wide{grid-column:span 2}
+
+  /* materials */
+  .mats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  @media (max-width:720px){.mats{grid-template-columns:repeat(2,1fr)}}
+  .mat{aspect-ratio:1/1;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:14px;border:1px solid var(--rule-dark)}
+  .mat span{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;background:rgba(0,0,0,.55);color:#fff;padding:5px 9px;border-radius:2px}
+
+  /* wardrobe/shot language */
+  .shot{margin-top:32px;padding:28px;border:1px dashed currentColor;display:grid;grid-template-columns:200px 1fr;gap:24px;opacity:.92}
+  @media (max-width:720px){.shot{grid-template-columns:1fr}}
+  .shot .lbl{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;line-height:1.5}
+  .shot .txt{font-family:'Instrument Serif',serif;font-style:italic;font-size:18px;line-height:1.5}
+  .shot .txt b{font-family:'Fraunces',serif;font-style:normal;font-weight:500;display:block;margin-bottom:6px}
+
+  /* deliverables */
+  .deliv{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:20px}
+  @media (max-width:860px){.deliv{grid-template-columns:1fr}}
+  .cover-art{aspect-ratio:1/1;padding:28px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--rule-dark)}
+  .cover-art .w{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;opacity:.75}
+  .cover-art .title{font-family:'Fraunces',serif;font-weight:300;font-size:46px;line-height:.95;letter-spacing:-.025em;margin:0}
+  .cover-art .title em{font-style:italic}
+  .cover-art .tag{font-family:'Instrument Serif',serif;font-style:italic;font-size:16px;opacity:.9;line-height:1.35}
+
+  /* voice sample panel */
+  .voice{margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media (max-width:860px){.voice{grid-template-columns:1fr}}
+  .voice-card{border:1px solid currentColor;padding:24px;display:flex;flex-direction:column;gap:14px}
+  .voice-card .t{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;opacity:.75}
+  .voice-card .body{font-family:'Fraunces',serif;font-weight:400;font-size:17px;line-height:1.5}
+  .voice-card .body em{font-style:italic}
+
+  /* feels like / doesn't */
+  .feel{margin-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media (max-width:720px){.feel{grid-template-columns:1fr}}
+  .feel > div{padding:22px;border:1px solid currentColor}
+  .feel .f-lbl{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;opacity:.75;margin-bottom:10px}
+  .feel .f-txt{font-family:'Fraunces',serif;font-weight:400;font-size:17px;line-height:1.5}
+  .feel .f-txt em{font-style:italic}
+
+  /* ——— BOARD 01 — THE EDGE ——— */
+  #edge{background:var(--edge-bg);color:var(--edge-ink);border-top:1px solid rgba(255,255,255,.08)}
+  #edge .board .head{border-color:rgba(241,231,212,.2)}
+  #edge .type-card{border-color:rgba(241,231,212,.28)}
+  #edge .swatch,#edge .cover-art{border-color:rgba(241,231,212,.18)}
+  #edge .sig-q{border-color:rgba(194,87,29,.5);background:rgba(194,87,29,.06)}
+  #edge .shot,#edge .voice-card,#edge .feel > div{border-color:rgba(241,231,212,.28)}
+
+  /* ——— BOARD 02 — THE HAND ——— */
+  #hand{background:var(--hand-bg);color:var(--hand-ink)}
+  #hand .type-card,#hand .swatch,#hand .cover-art,#hand .shot,#hand .voice-card,#hand .feel > div{border-color:rgba(246,236,214,.25)}
+  #hand .sig-q{border-color:rgba(194,150,71,.55);background:rgba(194,150,71,.08)}
+
+  /* ——— BOARD 03 — CROSSROADS ——— */
+  #cross{background:var(--cross-bg);color:var(--cross-ink)}
+  #cross .type-card,#cross .swatch,#cross .cover-art,#cross .shot,#cross .voice-card,#cross .feel > div{border-color:rgba(26,21,16,.25)}
+  #cross .sig-q{border-color:rgba(176,83,42,.55);background:rgba(176,83,42,.08)}
+  #cross .tile{background:#d9c89a;color:#1a1510}
+
+  /* gradient fills for concept tiles */
+  .grad-edge-1{background:
+    radial-gradient(120% 70% at 50% 110%, rgba(194,87,29,.8), transparent 60%),
+    linear-gradient(180deg,#0f0a06 0%,#1a1208 100%)}
+  .grad-edge-2{background:
+    linear-gradient(180deg,#6b5c4a 0%,#24180e 60%,#0f0a06 100%)}
+  .grad-edge-3{background:
+    repeating-linear-gradient(90deg,rgba(241,231,212,.04) 0 1px,transparent 1px 14px),
+    linear-gradient(180deg,#1a2030,#0f0a06)}
+  .grad-edge-4{background:
+    radial-gradient(140% 90% at 50% 100%, #c2571d, transparent 60%),
+    radial-gradient(100% 80% at 50% 0%, #7a1a1a, transparent 60%),
+    #0f0a06}
+  .grad-hand-1{background:
+    radial-gradient(circle at 30% 40%, rgba(241,225,191,.95), transparent 45%),
+    radial-gradient(circle at 70% 70%, rgba(194,150,71,.85), transparent 50%),
+    #120e09}
+  .grad-hand-2{background:linear-gradient(135deg,#2a1d10,#120e09)}
+  .grad-hand-3{background:
+    repeating-linear-gradient(45deg, rgba(194,150,71,.12) 0 2px, transparent 2px 10px),
+    #120e09}
+  .grad-hand-4{background:linear-gradient(180deg,#f1e1bf,#c29647)}
+  .grad-cross-1{background:linear-gradient(180deg,#3d4b60 0%,#b0532a 70%,#d09235 100%)}
+  .grad-cross-2{background:linear-gradient(180deg,#f1e7d2 0%,#7a5a3c 100%)}
+  .grad-cross-3{background:
+    repeating-linear-gradient(0deg, rgba(26,21,16,.12) 0 1px, transparent 1px 32px),
+    #f1e7d2}
+  .grad-cross-4{background:radial-gradient(120% 80% at 50% 100%, #1a1510, transparent 60%), #d09235}
+
+  .svg-wrap{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.85}
+
+  /* ——— Synthesis ——— */
+  .synth{padding:140px 0;background:#0f0a06;color:#f1e7d4;border-top:1px solid #000}
+  .synth .bars{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:56px;background:rgba(241,231,212,.15)}
+  @media (max-width:860px){.synth .bars{grid-template-columns:1fr}}
+  .synth .bars > div{background:#0f0a06;padding:36px 28px;min-height:260px;display:flex;flex-direction:column;justify-content:space-between}
+  .synth .bars h3{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.24em;margin:0 0 14px;color:#c2571d}
+  .synth .bars p{font-family:'Fraunces',serif;font-weight:300;font-size:22px;line-height:1.3;letter-spacing:-.005em;margin:0}
+  .synth .bars p em{font-style:italic}
+  .synth .bars .best{margin-top:20px;font-family:'Instrument Serif',serif;font-style:italic;font-size:16px;color:#e0cfa9;line-height:1.45}
+  .synth footer{margin-top:88px;display:flex;justify-content:space-between;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;opacity:.7;gap:20px;flex-wrap:wrap}
+
+  /* small screen tweaks */
+  @media (max-width:720px){
+    .section,.board,.synth{padding:88px 0}
+  }
+</style>
+</head>
+<body>
+
+<!-- ——————————— COVER ——————————— -->
+<section class="cover">
+  <div class="wrap top">
+    <span>The Bet Podcast · Mood Boards v2</span>
+    <span>Prepared for Rita · Bonfire Red · Apr 18 2026</span>
+  </div>
+
+  <img class="cover-portrait" src="./assets/rita-04-laugh-close-bw.png" alt="">
+
+  <div class="wrap cover-main">
+    <h1>What was<br/>your <em>Bet?</em><br/>And the <em>one</em><br/>you didn't<br/>make?</h1>
+    <p class="q">The signature question of a show about the moment <b>in the middle</b> — before the breakthrough, before the polished story, when the outcome isn't guaranteed and every path still feels possible.</p>
+  </div>
+
+  <div class="wrap bottom">
+    <p>V2 · built on the Apr 15 Creative Exploration + the Brand Platform Discovery Questionnaire.</p>
+    <div class="mark">The Bet</div>
+    <p style="text-align:right">Hosted by Rita<br/>McNeil Danish.<br/>Next: pick a direction for the Apr 24 logo review.</p>
+  </div>
+</section>
+
+<!-- ——————————— BRAND AT A GLANCE ——————————— -->
+<section class="section">
+  <div class="wrap">
+    <p class="eyebrow">Who The Bet is</p>
+    <h2 class="display">The <em>most interesting</em> person at the dinner party — not because she's loudest, but because she asks the question <em>nobody else dares to</em>.</h2>
+    <p class="lede">Rita is a recovering attorney, a former judge, a law-firm partner, a CEO, an entrepreneur, a mentor. Three decades of bets — taken, refused, almost-taken. The Bet is the show she was always going to make. It has a specific voice (<em>direct, warm, disarmingly honest — like a trusted best friend</em>) and a specific territory (<em>the middle</em>). Every choice in these boards tries to protect both.</p>
+
+    <div class="glance">
+      <div>
+        <p class="k">Mission</p>
+        <p class="v">Give voice to the moment in the middle. Honest, unscripted conversations about risk, doubt, and the decisions we make when the outcome <em>isn't guaranteed</em>.</p>
+        <p class="f">— from the Bonfire Red questionnaire, Phase 01.</p>
+      </div>
+      <div>
+        <p class="k">Vision</p>
+        <p class="v">Multi-platform media brand — podcast, book, live events, community — built on stories of <em>ambition, reinvention, and the human side</em> of the choices that change everything.</p>
+        <p class="f">Fast Company 2035 headline: "How Rita McNeil Danish built a media empire by asking the question nobody else was asking."</p>
+      </div>
+      <div>
+        <p class="k">Audience · The Hero</p>
+        <p class="v">Women navigating career invention, reinvention, leadership decisions, life pivots. Ambitious professionals → seasoned executives. <em>Plus</em> founders, nonprofit leaders, anyone who has had to bet on themselves.</p>
+        <p class="f">Pain point: the fear just before the Bet. They want the real version — the doubt, the fear, what it actually felt like. Not the polished post-mortem.</p>
+      </div>
+      <div>
+        <p class="k">Archetype blend</p>
+        <p class="v">70% <em>Hero + Explorer</em> — ambitious, rising to the challenge, pushing into territory nobody talks about. 30% <em>Sage</em> — hard-won wisdom, three decades of credentials earned.</p>
+        <p class="f">A working name for Rita's hybrid: <em>The Honest Guide</em>. She's been where you're standing. She won't lecture you.</p>
+      </div>
+      <div>
+        <p class="k">Voice &amp; tone</p>
+        <p class="v">Direct. Relatable. Warm. <em>Disarmingly honest</em>. The way a trusted friend talks at the kitchen table, not the way a coach talks from a stage.</p>
+        <p class="f">Explicit no's: Midwest Nice. Calm-in-the-Chaos. Performative. Preachy. Hustle-pilled.</p>
+      </div>
+      <div>
+        <p class="k">Signature device</p>
+        <p class="v">The question itself: <em>"What was your Bet — and what was the Bet you didn't make?"</em></p>
+        <p class="f">Used in cover art, in episode closers, printed on merch, embedded in the website hero. It's the show's frame and the brand's mark.</p>
+      </div>
+    </div>
+
+    <!-- Is / Is Not -->
+    <p class="section-title" style="margin-top:96px">The Bet · IS / IS NOT</p>
+    <div class="isnot">
+      <div class="row header">
+        <div class="is">The Bet IS</div>
+        <div class="isnt">It IS NOT</div>
+        <div class="bene">Why listeners care</div>
+      </div>
+      <div class="row"><div class="is">Honest &amp; unscripted</div><div class="isnt">Commercial &amp; produced</div><div class="bene">Real stories — not rehearsed narratives or PR-approved talking points.</div></div>
+      <div class="row"><div class="is">Authentic</div><div class="isnt">Polished &amp; prepared</div><div class="bene">The truth, both good and bad. The raw version.</div></div>
+      <div class="row"><div class="is">Human-centered</div><div class="isnt">Data- or tactic-driven</div><div class="bene">Focused on emotional truth of the time <em>in the middle</em> — not the playbook after.</div></div>
+      <div class="row"><div class="is">Warm &amp; inviting</div><div class="isnt">Intimidating or overbearing</div><div class="bene">Listeners feel like they're in the room at the table.</div></div>
+      <div class="row"><div class="is">Story-first</div><div class="isnt">Interview-directed</div><div class="bene">Not a Q&amp;A. Stories that resonate.</div></div>
+      <div class="row"><div class="is">Personal <em>and</em> professional</div><div class="isnt">Just the career</div><div class="bene">Bets at work, in marriage, in friendship, in life — so it lands for every listener.</div></div>
+    </div>
+
+    <!-- Competitive wedge -->
+    <p class="section-title" style="margin-top:96px">The strategic wedge</p>
+    <div class="wedge">
+      <div class="col">
+        <h3>What the others do</h3>
+        <p>How I Built This (Guy Raz / NPR) tells the <em>entrepreneurial origin story</em> — the arc from zero to success.</p>
+        <p>WorkLife with Adam Grant decodes the <em>psychology of the workplace</em> — research-backed, TED-adjacent.</p>
+        <p class="comp">Their weapons: scale, name recognition, production machinery, institutional credibility.</p>
+      </div>
+      <div class="col">
+        <h3>The Bet's counter-move</h3>
+        <p><em>Intimacy. Authenticity. Specificity. Emotional truth.</em></p>
+        <p>The Bet goes where the others don't — the moment of doubt, the personal bet, the marriage, the friendship, the quiet decision nobody narrates.</p>
+        <p class="comp">Rita's own story gives her access to emotional territory a produced network show cannot replicate. That's the wedge.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ——————————— BOARD 01 · THE EDGE ——————————— -->
+<section id="edge" class="board">
+  <div class="wrap">
+    <div class="head">
+      <span class="num">Board 01</span>
+      <h2 class="name">The <em>Edge</em></h2>
+      <span class="role">How it feels</span>
+    </div>
+
+    <p class="stmt">The body knows before the mind catches up. The Edge is the direction that lives inside the <em>chest-tightening half-second</em> before a decision — when fear and readiness are the same feeling and you're briefly, completely alone with the truest version of yourself. Warm, not cold. Film-still quiet. Rita in silhouette, in shadow, in flashes of ember light. The brand as a <em>held breath</em>.</p>
+
+    <div class="hero-row">
+      <div class="hero-img"><img src="./assets/rita-05-portrait-full.png" alt=""></div>
+      <div class="hero-quote">
+        <p class="big">You already know<br/>this feeling —<br/>your body has<br/>been here <em>before<br/>your mind</em><br/>caught up.</p>
+        <p class="attr">— concept #03 · the edge · Apr 15 exploration</p>
+        <div class="keys">
+          <span>cinematic</span><span>quiet</span><span>grained</span><span>amber · ember · bone</span><span>breath-held</span><span>body-first</span><span>hero + sage</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="section-title">Palette — warm ember on deep ground</p>
+    <div class="palette">
+      <div class="swatch" style="background:#0f0a06;color:#f1e7d4"><div class="meta"><b>Char</b>#0F0A06</div></div>
+      <div class="swatch" style="background:#1a1208;color:#f1e7d4"><div class="meta"><b>Smoke</b>#1A1208</div></div>
+      <div class="swatch" style="background:#c2571d;color:#0f0a06"><div class="meta"><b>Ember</b>#C2571D</div></div>
+      <div class="swatch" style="background:#8f4418;color:#f1e7d4"><div class="meta"><b>Copper</b>#8F4418</div></div>
+      <div class="swatch" style="background:#7a1a1a;color:#f1e7d4"><div class="meta"><b>Heart Red</b>#7A1A1A</div></div>
+      <div class="swatch" style="background:#e0cfa9;color:#0f0a06"><div class="meta"><b>Bone</b>#E0CFA9</div></div>
+    </div>
+
+    <p class="section-title">Typography — serif that has lived a life, mono that keeps score</p>
+    <div class="type-grid">
+      <div class="type-card">
+        <div>
+          <div class="label">Display · Fraunces Light / Italic</div>
+          <div style="font-family:'Fraunces',serif;font-weight:300;font-size:68px;line-height:.92;letter-spacing:-.025em;margin-top:8px">The <em style="font-style:italic">half-second</em><br/>before.</div>
+        </div>
+        <div class="spec">Fraunces at light weights — thin strokes, tall italic. Feels like a vintage book cover set in a dim room.</div>
+      </div>
+      <div class="type-card">
+        <div>
+          <div class="label">Body · Inter · Accent · DM Mono</div>
+          <div style="font-family:'Inter',sans-serif;font-weight:400;font-size:18px;line-height:1.55;margin-top:10px">Fear and readiness are the same feeling. Rita sits down with the people who felt it anyway, and asks them what they almost didn't say.</div>
+          <div style="font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.16em;margin-top:18px;opacity:.8">EP. 07 · THE NIGHT I QUIT THE FIRM</div>
+        </div>
+        <div class="spec">Inter for listening-length body. DM Mono for labels, ep numbers, timestamps.</div>
+      </div>
+    </div>
+
+    <div class="sig-q">
+      <span class="tag">Signature question · Edge treatment</span>
+      <p class="q">What was your <em>Bet</em>? And what was the <em>Bet</em><br/>you <em>didn't</em> make?</p>
+    </div>
+
+    <p class="section-title">Imagery — six ways to shoot one held moment</p>
+    <div class="img-grid">
+      <div class="tile tall"><img src="./assets/rita-06-hand-chin-bw.png" alt=""><div class="cap">Host · hand to chin · low shutter · B&amp;W</div></div>
+      <div class="tile grad-edge-4 concept">
+        <div class="cap" style="align-self:flex-end">Rooftop at blue hour · backlit figure · no face · city below</div>
+      </div>
+      <div class="tile"><img src="./assets/rita-01-portrait-color.png" alt=""><div class="cap">Leather &amp; red lip · 85mm · tungsten key</div></div>
+      <div class="tile grad-edge-3 concept">
+        <svg class="svg-wrap" viewBox="0 0 400 400" preserveAspectRatio="none"><rect x="110" y="60" width="14" height="280" fill="#e0cfa9" opacity=".4"/><rect x="138" y="60" width="14" height="280" fill="#e0cfa9" opacity=".4"/><rect x="166" y="60" width="14" height="280" fill="#e0cfa9" opacity=".4"/><rect x="194" y="60" width="14" height="280" fill="#e0cfa9" opacity=".4"/><rect x="222" y="60" width="14" height="280" fill="#e0cfa9" opacity=".4"/><rect x="250" y="60" width="14" height="280" fill="#e0cfa9" opacity=".4"/><rect x="278" y="60" width="14" height="280" fill="#e0cfa9" opacity=".4"/></svg>
+        <div class="cap" style="align-self:flex-end">Blinds at 4am · thin amber light bars · the bedroom ceiling</div>
+      </div>
+      <div class="tile grad-edge-1 concept">
+        <div class="cap">A cup of coffee going cold · film still · the decision already made</div>
+      </div>
+      <div class="tile wide"><img src="./assets/rita-07-hand-chin-color.png" alt=""><div class="cap">Genuine laugh · warm color · the <em>other</em> side of the Edge — relief</div></div>
+      <div class="tile grad-edge-2 concept">
+        <div class="cap" style="align-self:flex-end">Her back · shot over the shoulder · about to walk into the room</div>
+      </div>
+    </div>
+
+    <p class="section-title">Materials — surfaces that have held heat</p>
+    <div class="mats">
+      <div class="mat" style="background:
+        repeating-linear-gradient(90deg,#0f0a06 0 2px,#1a1208 2px 5px),#141008"><span>Pleated black leather</span></div>
+      <div class="mat" style="background:linear-gradient(135deg,#8f4418,#3a1d0a)"><span>Burnished copper</span></div>
+      <div class="mat" style="background:linear-gradient(180deg,#e0cfa9,#a69a7e)"><span>Bone paper · deckle edge</span></div>
+      <div class="mat" style="background:
+        radial-gradient(circle at 30% 30%, #1a1208, #0f0a06 75%)"><span>35mm grain · push-processed</span></div>
+    </div>
+
+    <div class="shot">
+      <div class="lbl">Wardrobe &amp;<br/>shot language</div>
+      <div class="txt"><b>Rita wears:</b> black leather, pleated dress, red lip, statement silver, chunky clear cuff. <b>Shot on:</b> dark seamless backdrop, single tungsten key, 85mm, slight negative fill. Grain dialed in. Both B&amp;W and color. No retouching beyond skin-true.</div>
+    </div>
+
+    <p class="section-title">Deliverables — cover, episode, social</p>
+    <div class="deliv">
+      <div class="cover-art" style="background:
+        radial-gradient(120% 70% at 50% 105%, rgba(194,87,29,.55), transparent 60%),
+        linear-gradient(180deg,#0f0a06 0%,#1a1208 100%);color:#f1e7d4">
+        <div class="w">The Bet · S1</div>
+        <h3 class="title">The <em>half</em><br/>second<br/>before.</h3>
+        <p class="tag">Honest, unscripted conversations about the moment in the middle. Hosted by Rita McNeil Danish.</p>
+      </div>
+      <div class="cover-art" style="background:#0f0a06;color:#f1e7d4;padding:0;overflow:hidden;position:relative">
+        <img src="./assets/rita-02-laugh-bw.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:contrast(1.08)">
+        <div style="position:relative;z-index:1;padding:28px;height:100%;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(180deg,transparent 35%,rgba(15,10,6,.88))">
+          <div class="w" style="color:#c2571d">EP. 12</div>
+          <div>
+            <h3 class="title">The exit<br/><em>wound</em>.</h3>
+            <p class="tag">Lia P. — the partnership she walked away from on a Tuesday.</p>
+          </div>
+        </div>
+      </div>
+      <div class="cover-art" style="background:linear-gradient(180deg,#0f0a06,#1a1208);color:#f1e7d4">
+        <div class="w">Pull quote · Ep. 03</div>
+        <h3 class="title">"I didn't know<br/>if I was <em>brave</em><br/>or stupid.<br/>I still don't."</h3>
+        <p class="tag" style="color:#c2571d">— Marcus K. · attorney → chef · bet 2019</p>
+      </div>
+    </div>
+
+    <p class="section-title">Voice samples — copy in the Edge register</p>
+    <div class="voice">
+      <div class="voice-card">
+        <p class="t">Episode description</p>
+        <p class="body">Before Lia walked into her partner's office on a Tuesday afternoon, she'd been rehearsing the sentence for three years. In this episode: the sentence, the silence after, and the Bet she almost didn't make. <em>Warning: honest.</em></p>
+      </div>
+      <div class="voice-card">
+        <p class="t">Social caption</p>
+        <p class="body">The Bet isn't the leap. It isn't the landing. It's the <em>half-second</em> you don't tell anyone about — the one where your body knows before your mind does. This week: Marcus K.</p>
+      </div>
+      <div class="voice-card">
+        <p class="t">Keynote bio opener</p>
+        <p class="body">Rita McNeil Danish has been a judge, a partner, a CEO, and — by her own count — a reinventor five times over. She made every Bet and missed two. She'll tell you which ones, and why.</p>
+      </div>
+    </div>
+
+    <div class="feel">
+      <div>
+        <p class="f-lbl">Feels like</p>
+        <p class="f-txt">A Maggie Nelson essay. The Alison Bechdel chapter about her father. A Kendrick album side-2. The first ten minutes of <em>Marriage Story</em>. Rita, at midnight, at a kitchen island.</p>
+      </div>
+      <div>
+        <p class="f-lbl">Doesn't feel like</p>
+        <p class="f-txt">Neon gradients. Stock "business hero" photography. Drop shadows. Motivational-poster tone. Hustle-culture aesthetic. <em>Ever.</em></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ——————————— BOARD 02 · THE HAND ——————————— -->
+<section id="hand" class="board">
+  <div class="wrap">
+    <div class="head">
+      <span class="num">Board 02</span>
+      <h2 class="name">The <em>Hand</em></h2>
+      <span class="role">How the show works</span>
+    </div>
+
+    <p class="stmt">Everyone is holding something. A decision they haven't announced. A risk they haven't named. A version of themselves they haven't shown anyone yet. The Hand is the direction that centers the show's actual <em>mechanic</em> — Rita's signature question — and treats every conversation as a moment of <em>revealing</em>. Brass, parchment, cognac, oxblood. Hands in every frame.</p>
+
+    <div class="hero-row">
+      <div class="hero-img"><img src="./assets/rita-07-hand-chin-color.png" alt=""></div>
+      <div class="hero-quote">
+        <p class="big">Everyone is<br/>holding <em>something.</em><br/>And in the space<br/>between one person<br/>asking and another<br/>answering — the cards<br/><em>finally show.</em></p>
+        <p class="attr">— concept #02 · the hand · Apr 15 exploration</p>
+        <div class="keys">
+          <span>tactile</span><span>ritual</span><span>close-up</span><span>brass · parchment · oxblood</span><span>hands</span><span>still life</span><span>sage</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="section-title">Palette — the table at a private dinner</p>
+    <div class="palette">
+      <div class="swatch" style="background:#120e09;color:#f6ecd6"><div class="meta"><b>Table Ink</b>#120E09</div></div>
+      <div class="swatch" style="background:#1f1712;color:#f6ecd6"><div class="meta"><b>Shadow</b>#1F1712</div></div>
+      <div class="swatch" style="background:#f1e1bf;color:#120e09"><div class="meta"><b>Parchment</b>#F1E1BF</div></div>
+      <div class="swatch" style="background:#c29647;color:#120e09"><div class="meta"><b>Brass</b>#C29647</div></div>
+      <div class="swatch" style="background:#8a4823;color:#f6ecd6"><div class="meta"><b>Cognac</b>#8A4823</div></div>
+      <div class="swatch" style="background:#5a1a1a;color:#f6ecd6"><div class="meta"><b>House Oxblood</b>#5A1A1A</div></div>
+    </div>
+
+    <p class="section-title">Typography — letterpress weight, room to breathe</p>
+    <div class="type-grid">
+      <div class="type-card">
+        <div>
+          <div class="label">Display · Fraunces Semibold / Instrument Italic</div>
+          <div style="font-family:'Fraunces',serif;font-weight:600;font-size:62px;line-height:.92;letter-spacing:-.025em;margin-top:8px;color:#f6ecd6">Show <em style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:#c29647">the</em> card.</div>
+        </div>
+        <div class="spec">Bold serif + single italic "the" in brass. Feels like a letterpressed invitation.</div>
+      </div>
+      <div class="type-card">
+        <div>
+          <div class="label">Body · Fraunces Regular · DM Mono accents</div>
+          <div style="font-family:'Fraunces',serif;font-weight:400;font-size:18px;line-height:1.6;margin-top:10px;color:#f6ecd6">The story not yet told. The pull between what guests carry privately and what they finally say out loud.</div>
+          <div style="font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.18em;margin-top:18px;color:#c29647">BET #14 · SHOWN · APRIL 2026</div>
+        </div>
+        <div class="spec">Episode numbering styled like bet totals. Each episode: a card laid down.</div>
+      </div>
+    </div>
+
+    <div class="sig-q">
+      <span class="tag">Signature question · Hand treatment</span>
+      <p class="q" style="color:#f6ecd6">What was your <em style="color:#c29647">Bet</em>?<br/>And what was the one you've <em style="color:#c29647">been holding</em>?</p>
+    </div>
+
+    <p class="section-title">Imagery — the ritual of revealing</p>
+    <div class="img-grid">
+      <div class="tile"><img src="./assets/rita-06-hand-chin-bw.png" alt=""><div class="cap">Host · hands in frame · the asking pose</div></div>
+      <div class="tile grad-hand-1 concept">
+        <div class="cap" style="align-self:flex-end">Single parchment card · face-down on dark felt · window light</div>
+      </div>
+      <div class="tile grad-hand-2 concept">
+        <svg class="svg-wrap" viewBox="0 0 400 400" preserveAspectRatio="none">
+          <rect x="130" y="90" width="140" height="200" rx="8" fill="#f1e1bf"/>
+          <rect x="130" y="90" width="140" height="200" rx="8" fill="none" stroke="#c29647" stroke-width="1.5"/>
+          <line x1="150" y1="140" x2="250" y2="140" stroke="#5a1a1a" stroke-width="1"/>
+          <line x1="150" y1="160" x2="220" y2="160" stroke="#5a1a1a" stroke-width="1"/>
+          <line x1="150" y1="180" x2="240" y2="180" stroke="#5a1a1a" stroke-width="1"/>
+        </svg>
+        <div class="cap" style="align-self:flex-end">Guest's "bet card" · hand-typed · signed at the bottom</div>
+      </div>
+      <div class="tile tall"><img src="./assets/rita-03-velvet-profile.png" alt=""><div class="cap">Velvet · side profile · held in</div></div>
+      <div class="tile wide grad-hand-3 concept">
+        <div class="cap">Brass reading lamp · edge of a wooden table · two cups · no one at the table yet</div>
+      </div>
+      <div class="tile"><img src="./assets/rita-01-portrait-color.png" alt=""><div class="cap">Zip · ring · the guarded shot</div></div>
+      <div class="tile grad-hand-4 concept">
+        <svg class="svg-wrap" viewBox="0 0 400 400" preserveAspectRatio="none">
+          <path d="M130,260 C130,200 160,160 200,150 C240,160 270,200 270,260 Z" fill="#5a1a1a" opacity=".9"/>
+          <path d="M160,260 L160,320 M200,260 L200,330 M240,260 L240,320" stroke="#5a1a1a" stroke-width="10" stroke-linecap="round"/>
+        </svg>
+        <div class="cap" style="align-self:flex-end;background:rgba(255,255,255,.75);color:#5a1a1a">Top-down · closed fist · what's inside</div>
+      </div>
+    </div>
+
+    <p class="section-title">Materials — surfaces that hide and reveal</p>
+    <div class="mats">
+      <div class="mat" style="background:
+        repeating-linear-gradient(25deg, rgba(90,26,26,.14) 0 2px, transparent 2px 6px),
+        #f1e1bf"><span>Aged parchment</span></div>
+      <div class="mat" style="background:linear-gradient(135deg,#c29647,#704f1a)"><span>Brushed brass</span></div>
+      <div class="mat" style="background:
+        radial-gradient(circle at 30% 30%, #8a2a36, #5a1a1a 60%, #2a0a0a 100%)"><span>Bookcloth oxblood</span></div>
+      <div class="mat" style="background:linear-gradient(135deg,#2a1d10,#120e09)"><span>Stained walnut</span></div>
+    </div>
+
+    <div class="shot">
+      <div class="lbl">Wardrobe &amp;<br/>shot language</div>
+      <div class="txt"><b>Rita wears:</b> warm velvet (bronze, oxblood), soft leather jacket, crystal or brass pendant, red lip. <b>Shot on:</b> felted wood table, practical brass lamp as key, hands in every frame, shallow DOF. Think <em>Vanity Fair interview still</em>, not studio glam.</div>
+    </div>
+
+    <p class="section-title">Deliverables — cover, episode, social</p>
+    <div class="deliv">
+      <div class="cover-art" style="background:
+        radial-gradient(80% 80% at 50% 45%, #f1e1bf 0 38%, #c29647 62%, #5a1a1a 100%);color:#3a1e14">
+        <div class="w">The Bet</div>
+        <h3 class="title">Show<br/><em>the</em><br/>card.</h3>
+        <p class="tag">Every guest is holding something. This show is where they finally show it.</p>
+      </div>
+      <div class="cover-art" style="background:#120e09;color:#f6ecd6;padding:0;position:relative;overflow:hidden">
+        <img src="./assets/rita-04-laugh-close-bw.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:sepia(.25) contrast(1.02)">
+        <div style="position:relative;z-index:1;height:100%;padding:28px;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(180deg,transparent 35%,rgba(18,14,9,.85))">
+          <div class="w" style="color:#c29647">BET #04 · SHOWN</div>
+          <div>
+            <h3 class="title" style="color:#f6ecd6">The <em style="color:#c29647">raise</em>.</h3>
+            <p class="tag">Tanya Ofori — the ask that rewrote the rest of her career.</p>
+          </div>
+        </div>
+      </div>
+      <div class="cover-art" style="background:#1f1712;color:#f6ecd6">
+        <div class="w" style="color:#c29647">Pull quote · Ep. 09</div>
+        <h3 class="title">"I'd been holding<br/>that <em>answer</em><br/>for six years."</h3>
+        <p class="tag" style="color:#c29647">— Julian M. · teacher → founder</p>
+      </div>
+    </div>
+
+    <p class="section-title">Voice samples — copy in the Hand register</p>
+    <div class="voice">
+      <div class="voice-card">
+        <p class="t">Episode description</p>
+        <p class="body">Tanya Ofori had the number in her head for six weeks before she wrote it down. Six months before she said it out loud. In this episode, she finally <em>shows the card</em> — and tells Rita what almost stopped her.</p>
+      </div>
+      <div class="voice-card">
+        <p class="t">Social caption</p>
+        <p class="body">Every guest on The Bet walks in holding something. A number. A sentence. A decision they haven't announced. <em>The Hand</em> is the moment they show it. This week: Tanya.</p>
+      </div>
+      <div class="voice-card">
+        <p class="t">Website hero</p>
+        <p class="body">What was your Bet? And what was the one you've been holding? A podcast, hosted by Rita McNeil Danish, for anyone who has ever had to bet on themselves — <em>especially</em> when no one else would.</p>
+      </div>
+    </div>
+
+    <div class="feel">
+      <div>
+        <p class="f-lbl">Feels like</p>
+        <p class="f-txt">A private dinner with five chairs. A letter you've kept in the drawer. Vanity Fair at its most interior. A Moth story told to one person. <em>The night before you tell anyone.</em></p>
+      </div>
+      <div>
+        <p class="f-lbl">Doesn't feel like</p>
+        <p class="f-txt">Casino clichés (dice, roulette, "Vegas"), poker-bro cigar aesthetic, anything that makes the metaphor feel like a <em>gimmick</em> instead of a frame for the real work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ——————————— BOARD 03 · CROSSROADS ——————————— -->
+<section id="cross" class="board">
+  <div class="wrap">
+    <div class="head">
+      <span class="num">Board 03</span>
+      <h2 class="name">The <em>Crossroads</em></h2>
+      <span class="role">Where the audience lives</span>
+    </div>
+
+    <p class="stmt">The biggest territory. The direction that builds the <em>multi-platform brand</em> — podcast to book to live events to community. Crossroads is warm, daylit, lived-in. It doesn't perform for you; it pulls up a chair. This is the board that most looks like a show your best friend recommends and your mother actually listens to. The direction that <em>scales</em>.</p>
+
+    <div class="hero-row">
+      <div class="hero-img"><img src="./assets/rita-03-velvet-profile.png" alt=""></div>
+      <div class="hero-quote">
+        <p class="big">Every direction is <em>possible.</em><br/>None of them<br/>are <em>certain.</em><br/>That's where<br/>the show <em>lives.</em></p>
+        <p class="attr">— concept #01 · crossroads · Apr 15 exploration</p>
+        <div class="keys">
+          <span>warm</span><span>daylit</span><span>generous</span><span>terracotta · ochre · dusk</span><span>typography-led</span><span>scalable</span><span>hero + explorer</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="section-title">Palette — morning light, earth, open sky</p>
+    <div class="palette">
+      <div class="swatch" style="background:#f1e7d2;color:#1a1510"><div class="meta"><b>Linen</b>#F1E7D2</div></div>
+      <div class="swatch" style="background:#d09235;color:#1a1510"><div class="meta"><b>Ochre</b>#D09235</div></div>
+      <div class="swatch" style="background:#b0532a;color:#f1e7d2"><div class="meta"><b>Terracotta</b>#B0532A</div></div>
+      <div class="swatch" style="background:#7a5a3c;color:#f1e7d2"><div class="meta"><b>Dusk Earth</b>#7A5A3C</div></div>
+      <div class="swatch" style="background:#3d4b60;color:#f1e7d2"><div class="meta"><b>Atlas Blue</b>#3D4B60</div></div>
+      <div class="swatch" style="background:#1a1510;color:#f1e7d2"><div class="meta"><b>Ink</b>#1A1510</div></div>
+    </div>
+
+    <p class="section-title">Typography — bookshop classic, talk-show warmth</p>
+    <div class="type-grid">
+      <div class="type-card">
+        <div>
+          <div class="label">Display · Fraunces Regular Italic</div>
+          <div style="font-family:'Fraunces',serif;font-style:italic;font-weight:400;font-size:72px;line-height:.92;letter-spacing:-.02em;margin-top:8px;color:#1a1510">The road<br/>you <em style="font-style:normal">didn't</em><br/>take.</div>
+        </div>
+        <div class="spec">Italic as the house voice. Feels like a well-loved paperback you'd want on your shelf.</div>
+      </div>
+      <div class="type-card">
+        <div>
+          <div class="label">Body · Space Grotesk · Fraunces italic for feeling</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:18px;line-height:1.55;margin-top:10px;color:#1a1510">Standing in the middle of something — a career, a marriage, a version of yourself that no longer fits. The Bet meets you there.</div>
+          <div style="font-family:'Fraunces',serif;font-style:italic;font-size:17px;margin-top:14px;color:#b0532a">Episode no. 12 · "the exit ramp"</div>
+        </div>
+        <div class="spec">Modern grotesk for clarity. Italic serif pull-quotes for warmth.</div>
+      </div>
+    </div>
+
+    <div class="sig-q">
+      <span class="tag">Signature question · Crossroads treatment</span>
+      <p class="q">What was your <em>Bet</em>?<br/>And what was the <em>road</em> you didn't take?</p>
+    </div>
+
+    <p class="section-title">Imagery — thresholds, roads, rooms before you leave them</p>
+    <div class="img-grid">
+      <div class="tile tall"><img src="./assets/rita-02-laugh-bw.png" alt=""><div class="cap">Rita laughing · unguarded · the best friend at the table</div></div>
+      <div class="tile grad-cross-1 concept">
+        <div class="cap" style="background:rgba(0,0,0,.4)">Empty two-lane road · golden hour · Kodak Portra · mountains</div>
+      </div>
+      <div class="tile grad-cross-3 concept">
+        <svg class="svg-wrap" viewBox="0 0 400 400" preserveAspectRatio="none"><path d="M40,360 L200,100 L360,360" stroke="#b0532a" stroke-width="2.5" fill="none"/><path d="M200,100 L200,360" stroke="#b0532a" stroke-width="2.5" fill="none" stroke-dasharray="5 7"/><circle cx="200" cy="100" r="5" fill="#b0532a"/></svg>
+        <div class="cap" style="background:rgba(26,21,16,.55);color:#f1e7d2">Hand-painted wooden signpost · three arms · serif caps</div>
+      </div>
+      <div class="tile"><img src="./assets/rita-05-portrait-full.png" alt=""><div class="cap">Standing · full figure · ready</div></div>
+      <div class="tile grad-cross-2 concept">
+        <svg class="svg-wrap" viewBox="0 0 400 400" preserveAspectRatio="none"><rect x="130" y="70" width="140" height="260" fill="#1a1510" opacity=".8"/><rect x="142" y="82" width="116" height="236" fill="#f1e7d2"/></svg>
+        <div class="cap" style="background:rgba(255,255,255,.7);color:#1a1510">An open doorway · warm interior · cool hallway beyond</div>
+      </div>
+      <div class="tile wide"><img src="./assets/rita-07-hand-chin-color.png" alt=""><div class="cap">Seated · mid-laugh · hands talking</div></div>
+      <div class="tile grad-cross-4 concept">
+        <div class="cap" style="background:rgba(26,21,16,.55);color:#f1e7d2">Diner booth, 3pm · coffee cup, half-drunk · someone just left or is arriving</div>
+      </div>
+    </div>
+
+    <p class="section-title">Materials — paper, cloth, warm sun</p>
+    <div class="mats">
+      <div class="mat" style="background:
+        repeating-linear-gradient(90deg,rgba(122,90,60,.1) 0 1px,transparent 1px 3px),
+        repeating-linear-gradient(0deg,rgba(122,90,60,.1) 0 1px,transparent 1px 3px),
+        #f1e7d2"><span>Woven linen</span></div>
+      <div class="mat" style="background:
+        radial-gradient(circle at 30% 30%, #e8d8a8, #d09235 60%, #a06f1e 100%)"><span>Hand-dyed ochre</span></div>
+      <div class="mat" style="background:
+        repeating-linear-gradient(45deg,#b0532a 0 3px,#9c4220 3px 6px)"><span>Terracotta · clay brick</span></div>
+      <div class="mat" style="background:linear-gradient(180deg,#3d4b60,#1a2a3a)"><span>Dusk sky · 7:42 pm</span></div>
+    </div>
+
+    <div class="shot">
+      <div class="lbl">Wardrobe &amp;<br/>shot language</div>
+      <div class="txt"><b>Rita wears:</b> rich earth tones — bronze velvet, warm knit, cream lace — less leather, more texture. <b>Shot on:</b> natural light or soft overhead, kitchen counters, reading chairs, outside at golden hour. The brand that looks good on a book jacket <em>and</em> a festival stage.</div>
+    </div>
+
+    <p class="section-title">Deliverables — cover, episode, social</p>
+    <div class="deliv">
+      <div class="cover-art" style="background:linear-gradient(180deg,#f1e7d2 0 55%, #b0532a 55% 100%);color:#1a1510">
+        <div class="w">The Bet Podcast</div>
+        <h3 class="title" style="color:#1a1510"><em>The</em> road<br/>you didn't<br/>take.</h3>
+        <p class="tag" style="color:#f1e7d2">Season 1 · hosted by Rita McNeil Danish.</p>
+      </div>
+      <div class="cover-art" style="background:#f1e7d2;color:#1a1510;padding:0;overflow:hidden;position:relative">
+        <img src="./assets/rita-05-portrait-full.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:sepia(.08) saturate(.95)">
+        <div style="position:relative;z-index:1;padding:28px;height:100%;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(180deg,transparent 55%, rgba(241,231,210,.96))">
+          <div class="w">Episode 12</div>
+          <div>
+            <h3 class="title" style="font-family:'Fraunces',serif;font-style:italic;font-weight:400">The exit<br/>ramp.</h3>
+            <p class="tag" style="color:#7a5a3c">Alana Reyes on walking away at the top.</p>
+          </div>
+        </div>
+      </div>
+      <div class="cover-art" style="background:#d09235;color:#1a1510">
+        <div class="w">Pull quote · Rita</div>
+        <h3 class="title">"There's no one<br/><em>right</em> road.<br/>There's just the<br/>one you take."</h3>
+        <p class="tag">— Rita McNeil Danish, host</p>
+      </div>
+    </div>
+
+    <p class="section-title">Voice samples — copy in the Crossroads register</p>
+    <div class="voice">
+      <div class="voice-card">
+        <p class="t">Episode description</p>
+        <p class="body">Alana Reyes made partner at 34. At 41, she walked away from it. In this episode: the seven years in between, the conversation at the kitchen table, and the Bet she <em>almost</em> didn't make. Hosted by Rita McNeil Danish.</p>
+      </div>
+      <div class="voice-card">
+        <p class="t">Social caption</p>
+        <p class="body">The middle of your life is not a waiting room. It's the <em>whole</em> room. The Bet sits down with the people who chose — and the ones who didn't, and kept going anyway. New episode every Thursday.</p>
+      </div>
+      <div class="voice-card">
+        <p class="t">Website hero</p>
+        <p class="body">An honest conversation about the bets we make, the ones we don't, and the middle nobody talks about. Hosted by Rita McNeil Danish — recovering attorney, reinventor, <em>best friend you never had</em>.</p>
+      </div>
+    </div>
+
+    <div class="feel">
+      <div>
+        <p class="f-lbl">Feels like</p>
+        <p class="f-txt">A Cheryl Strayed column. Brené on a Sunday. On Being. A Penguin Classics jacket. <em>The kind of show your mother recommends to her book club.</em></p>
+      </div>
+      <div>
+        <p class="f-lbl">Doesn't feel like</p>
+        <p class="f-txt">Overused self-help aesthetics. Pastel Pinterest gradients. Cursive logo scripts. Anything that softens the show into a <em>wellness brand</em>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ——————————— SYNTHESIS ——————————— -->
+<section class="synth">
+  <div class="wrap">
+    <p class="eyebrow" style="color:#c2571d">What to bring to the Apr 24 logo review</p>
+    <h2 class="display">Three doors.<br/>Same <em>truth</em>.</h2>
+    <p class="lede" style="color:#e0cfa9">These aren't mutually exclusive. The winning direction almost always <em>borrows</em>. A gut read:</p>
+
+    <div class="bars">
+      <div>
+        <div>
+          <h3>01 · The Edge</h3>
+          <p>Pick this if the brand should <em>feel</em> like a film — and if you're willing to protect the mood even when it makes the marketing harder.</p>
+        </div>
+        <p class="best">Best for: the launch trailer, the press push, the series art. The risk: too heavy for merch, newsletter, 15-second clips.</p>
+      </div>
+      <div>
+        <div>
+          <h3>02 · The Hand</h3>
+          <p>Pick this if you want the <em>signature question</em> to be the whole brand — and if every episode is a ritual, not a news cycle.</p>
+        </div>
+        <p class="best">Best for: the show's identity system, the book, live events. The risk: the metaphor gets loud if it's over-used.</p>
+      </div>
+      <div>
+        <div>
+          <h3>03 · Crossroads</h3>
+          <p>Pick this if the brand should <em>scale</em> — podcast to book to community — and if warmth is the differentiator.</p>
+        </div>
+        <p class="best">Best for: the website, email, merch, the book jacket, keynote tour. The risk: warmth without edge reads as lifestyle.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:88px;max-width:800px">
+      <p class="eyebrow" style="color:#c2571d">Joey's honest take</p>
+      <p style="font-family:'Fraunces',serif;font-weight:300;font-size:28px;line-height:1.35;letter-spacing:-.01em;color:#f1e7d4">A hybrid is probably the answer. <em>Crossroads as the system</em> — because Rita's voice is warm and her ambition is multi-platform — with <em>Edge</em> pulled forward for launch/series art and <em>Hand</em> embedded as the signature question device. That keeps the warmth <em>and</em> the edge. It also gives the logo work something specific to solve: a mark that carries a quiet <em>question</em> inside it.</p>
+    </div>
+
+    <footer>
+      <span>The Bet · Mood Boards v2 · April 18 2026</span>
+      <span>Bonfire Red · Sendit LLC</span>
+      <span>Next: pick a direction · refine for Apr 24</span>
+    </footer>
+  </div>
+</section>
+
+</body>
+</html>
